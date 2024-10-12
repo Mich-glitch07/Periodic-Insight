@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Table</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<section class="sub-header">
+    <nav>
+        <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="Explore-Elements.html">EXPLORE ELEMENTS</a></li>
+                <li><a href="Search.html">SEARCH</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Know more about Elements</h1>
+</section>
+
+<!-----search----->
+<div class="search-container">
+    <input type="text" id="search-bar" placeholder="Search for an element..." />
+    <button id="search-btn">Search</button>
+  </div>
+  <div id="search-result" class="result-container"></div>
+  
+  
+<!----JavaScript for search------->
+<script>
+    // Array of elements with detailed information
+    const elements = [
+  {
+    name: "Hydrogen",
+    symbol: "H",
+    atomicNumber: 1,
+    atomicWeight: 1.008,
+    category: "Non-metal",
+    details: "Hydrogen is the lightest element and is the most abundant chemical substance in the universe, primarily found in stars and gas giant planets.",
+    uses: "Used in fuel cells, fertilizers, and as rocket fuel.",
+  },
+  {
+    name: "Helium",
+    symbol: "He",
+    atomicNumber: 2,
+    atomicWeight: 4.0026,
+    category: "Noble Gas",
+    details: "Helium is a colorless, odorless, tasteless, non-toxic, inert gas that heads the noble gas group in the periodic table.",
+    uses: "Used in balloons, as a cooling medium for nuclear reactors, and in cryogenics.",
+  },
+  {
+    name: "Lithium",
+    symbol: "Li",
+    atomicNumber: 3,
+    atomicWeight: 6.94,
+    category: "Alkali Metal",
+    details: "Lithium is a soft, silvery-white alkali metal. It is the lightest metal and the lightest solid element.",
+    uses: "Used in rechargeable batteries for mobile phones, laptops, and electric vehicles.",
+  },
+  {
+    name: "Beryllium",
+    symbol: "Be",
+    atomicNumber: 4,
+    atomicWeight: 9.0122,
+    category: "Alkaline Earth Metal",
+    details: "Beryllium is a hard, grayish metal naturally found in mineral rocks, coal, soil, and volcanic dust.",
+    uses: "Used in aerospace materials due to its lightweight and strong properties.",
+  },
+  {
+    name: "Boron",
+    symbol: "B",
+    atomicNumber: 5,
+    atomicWeight: 10.81,
+    category: "Metalloid",
+    details: "Boron is a metalloid that is essential for plant growth and is found in small amounts in Earth's crust.",
+    uses: "Used in glass, ceramics, detergents, and as an insecticide.",
+  },
+  {
+    name: "Carbon",
+    symbol: "C",
+    atomicNumber: 6,
+    atomicWeight: 12.011,
+    category: "Non-metal",
+    details: "Carbon is a fundamental building block of life and can exist in several allotropes, including graphite and diamond.",
+    uses: "Used in steel production, batteries, and as a building block for organic compounds.",
+  },
+  {
+    name: "Nitrogen",
+    symbol: "N",
+    atomicNumber: 7,
+    atomicWeight: 14.007,
+    category: "Non-metal",
+    details: "Nitrogen is a colorless, odorless gas that makes up 78% of Earth's atmosphere and is essential for life.",
+    uses: "Used in fertilizers, explosives, and as an inert atmosphere for chemical processes.",
+  },
+  {
+    name: "Oxygen",
+    symbol: "O",
+    atomicNumber: 8,
+    atomicWeight: 15.999,
+    category: "Non-metal",
+    details: "Oxygen is a reactive non-metal and an essential element for respiration in most living organisms.",
+    uses: "Used in respiration, water purification, and as an oxidizer in rocket fuel.",
+  },
+  {
+    name: "Fluorine",
+    symbol: "F",
+    atomicNumber: 9,
+    atomicWeight: 18.998,
+    category: "Non-metal",
+    details: "Fluorine is the most electronegative and reactive of all elements, existing as a pale yellow gas.",
+    uses: "Used in toothpaste, non-stick coatings, and refrigerants.",
+  },
+  {
+    name: "Neon",
+    symbol: "Ne",
+    atomicNumber: 10,
+    atomicWeight: 20.180,
+    category: "Noble Gas",
+    details: "Neon is a colorless, inert gas that emits a bright reddish-orange glow when ionized.",
+    uses: "Used in neon signs and high-voltage indicators.",
+  },
+  {
+    name: "Sodium",
+    symbol: "Na",
+    atomicNumber: 11,
+    atomicWeight: 22.990,
+    category: "Alkali Metal",
+    details: "Sodium is a soft, silvery-white, highly reactive metal found in salt and used in various chemical processes.",
+    uses: "Used in table salt, soap making, and as a heat exchanger in nuclear reactors.",
+  },
+  {
+    name: "Magnesium",
+    symbol: "Mg",
+    atomicNumber: 12,
+    atomicWeight: 24.305,
+    category: "Alkaline Earth Metal",
+    details: "Magnesium is a shiny gray solid with a low density and high strength, found in minerals.",
+    uses: "Used in alloys, fireworks, and as a reducing agent in the production of titanium.",
+  },
+  {
+    name: "Aluminum",
+    symbol: "Al",
+    atomicNumber: 13,
+    atomicWeight: 26.982,
+    category: "Post-transition Metal",
+    details: "Aluminum is a lightweight, silvery-white metal known for its corrosion resistance and electrical conductivity.",
+    uses: "Used in packaging, transportation, and construction materials.",
+  },
+  {
+    name: "Silicon",
+    symbol: "Si",
+    atomicNumber: 14,
+    atomicWeight: 28.085,
+    category: "Metalloid",
+    details: "Silicon is a hard and brittle crystalline solid with a blue-grey metallic luster, widely used in electronics.",
+    uses: "Used in semiconductors, solar cells, and glass production.",
+  },
+  {
+    name: "Phosphorus",
+    symbol: "P",
+    atomicNumber: 15,
+    atomicWeight: 30.974,
+    category: "Non-metal",
+    details: "Phosphorus is a reactive non-metal that exists in several allotropes, including white, red, and black phosphorus.",
+    uses: "Used in fertilizers, detergents, and as a flame retardant.",
+  },
+  {
+    name: "Sulfur",
+    symbol: "S",
+    atomicNumber: 16,
+    atomicWeight: 32.06,
+    category: "Non-metal",
+    details: "Sulfur is a yellow crystalline solid that is a key element in many biological processes.",
+    uses: "Used in fertilizers, sulfuric acid production, and as a fungicide.",
+  },
+  {
+    name: "Chlorine",
+    symbol: "Cl",
+    atomicNumber: 17,
+    atomicWeight: 35.45,
+    category: "Halogen",
+    details: "Chlorine is a greenish-yellow gas that is a strong oxidizing agent and is widely used in disinfection.",
+    uses: "Used in water treatment, bleach, and disinfectants.",
+  },
+  {
+    name: "Argon",
+    symbol: "Ar",
+    atomicNumber: 18,
+    atomicWeight: 39.948,
+    category: "Noble Gas",
+    details: "Argon is a colorless, odorless, inert gas that makes up about 1% of the Earth's atmosphere.",
+    uses: "Used in light bulbs, welding, and as an inert gas in chemical processes.",
+  },
+  {
+    name: "Potassium",
+    symbol: "K",
+    atomicNumber: 19,
+    atomicWeight: 39.098,
+    category: "Alkali Metal",
+    details: "Potassium is a soft, silvery-white metal that is highly reactive and essential for plant growth.",
+    uses: "Used in fertilizers, potassium chloride, and as a salt substitute.",
+  },
+  {
+    name: "Calcium",
+    symbol: "Ca",
+    atomicNumber: 20,
+    atomicWeight: 40.078,
+    category: "Alkaline Earth Metal",
+    details: "Calcium is a soft, gray alkaline earth metal essential for living organisms, especially in cell physiology.",
+    uses: "Used in cement, bone health, and as a dietary supplement.",
+  },
+  {
+    name: "Scandium",
+    symbol: "Sc",
+    atomicNumber: 21,
+    atomicWeight: 44.956,
+    category: "Transition Metal",
+    details: "Scandium is a silvery-white metal that is often used in aluminum alloys to improve their strength.",
+    uses: "Used in aerospace components and sports equipment.",
+  },
+  {
+    name: "Titanium",
+    symbol: "Ti",
+    atomicNumber: 22,
+    atomicWeight: 47.867,
+    category: "Transition Metal",
+    details: "Titanium is a strong, low-density metal known for its corrosion resistance and high strength-to-weight ratio.",
+    uses: "Used in aerospace, medical devices, and sporting goods.",
+  },
+  {
+    name: "Vanadium",
+    symbol: "V",
+    atomicNumber: 23,
+    atomicWeight: 50.941,
+    category: "Transition Metal",
+    details: "Vanadium is a hard, silvery metal used in various alloys to increase strength and toughness.",
+    uses: "Used in steel production and chemical catalysts.",
+  },
+  {
+    name: "Chromium",
+    symbol: "Cr",
+    atomicNumber: 24,
+    atomicWeight: 51.996,
+    category: "Transition Metal",
+    details: "Chromium is a shiny, hard metal known for its high corrosion resistance and hardness.",
+    uses: "Used in stainless steel, chrome plating, and pigments.",
+  },
+  {
+    name: "Manganese",
+    symbol: "Mn",
+    atomicNumber: 25,
+    atomicWeight: 54.938,
+    category: "Transition Metal",
+    details: "Manganese is a brittle, silvery metal that is an essential trace element for living organisms.",
+    uses: "Used in steel production and batteries.",
+  },
+  {
+    name: "Iron",
+    symbol: "Fe",
+    atomicNumber: 26,
+    atomicWeight: 55.845,
+    category: "Transition Metal",
+    details: "Iron is a strong, malleable metal that is a key component of steel and is vital for life.",
+    uses: "Used in construction, manufacturing, and as a dietary supplement.",
+  },
+  {
+    name: "Cobalt",
+    symbol: "Co",
+    atomicNumber: 27,
+    atomicWeight: 58.933,
+    category: "Transition Metal",
+    details: "Cobalt is a hard, lustrous metal that is used in various alloys and has magnetic properties.",
+    uses: "Used in batteries, superalloys, and pigments.",
+  },
+  {
+    name: "Nickel",
+    symbol: "Ni",
+    atomicNumber: 28,
+    atomicWeight: 58.693,
+    category: "Transition Metal",
+    details: "Nickel is a silvery-white metal known for its corrosion resistance and is often used in alloys.",
+    uses: "Used in coins, batteries, and stainless steel.",
+  },
+  {
+    name: "Copper",
+    symbol: "Cu",
+    atomicNumber: 29,
+    atomicWeight: 63.546,
+    category: "Transition Metal",
+    details: "Copper is a reddish-brown metal that is an excellent conductor of electricity and heat.",
+    uses: "Used in electrical wiring, plumbing, and coins.",
+  },
+  {
+    name: "Zinc",
+    symbol: "Zn",
+    atomicNumber: 30,
+    atomicWeight: 65.38,
+    category: "Transition Metal",
+    details: "Zinc is a bluish-white metal that is primarily used for galvanizing other metals to protect them from rust.",
+    uses: "Used in coatings, batteries, and as a dietary supplement.",
+  },
+  {
+    name: "Gallium",
+    symbol: "Ga",
+    atomicNumber: 31,
+    atomicWeight: 69.723,
+    category: "Post-transition Metal",
+    details: "Gallium is a soft metal that melts just above room temperature and is used in electronics.",
+    uses: "Used in semiconductors, LEDs, and solar panels.",
+  },
+  {
+    name: "Germanium",
+    symbol: "Ge",
+    atomicNumber: 32,
+    atomicWeight: 72.63,
+    category: "Metalloid",
+    details: "Germanium is a grayish-white metalloid that is used in transistors and fiber optics.",
+    uses: "Used in electronics and infrared optics.",
+  },
+  {
+    name: "Arsenic",
+    symbol: "As",
+    atomicNumber: 33,
+    atomicWeight: 74.922,
+    category: "Metalloid",
+    details: "Arsenic is a toxic metalloid that occurs naturally in minerals and has various allotropes.",
+    uses: "Used in semiconductors, pesticides, and wood preservatives.",
+  },
+  {
+    name: "Selenium",
+    symbol: "Se",
+    atomicNumber: 34,
+    atomicWeight: 78.971,
+    category: "Non-metal",
+    details: "Selenium is a non-metal that is essential in small amounts for certain organisms and is often used in electronics.",
+    uses: "Used in photocells, glassmaking, and dietary supplements.",
+  },
+  {
+    name: "Bromine",
+    symbol: "Br",
+    atomicNumber: 35,
+    atomicWeight: 79.904,
+    category: "Halogen",
+    details: "Bromine is a reddish-brown liquid that is a powerful disinfectant and is highly toxic.",
+    uses: "Used in flame retardants, photography, and water treatment.",
+  },
+  {
+    name: "Krypton",
+    symbol: "Kr",
+    atomicNumber: 36,
+    atomicWeight: 83.798,
+    category: "Noble Gas",
+    details: "Krypton is a colorless, odorless gas that emits a bright white light when ionized.",
+    uses: "Used in high-performance lighting and photography.",
+  },
+  {
+    name: "Rubidium",
+    symbol: "Rb",
+    atomicNumber: 37,
+    atomicWeight: 85.468,
+    category: "Alkali Metal",
+    details: "Rubidium is a soft, silvery-white metal that is highly reactive and is used in atomic clocks.",
+    uses: "Used in atomic clocks, fireworks, and as a research tool.",
+  },
+  {
+    name: "Strontium",
+    symbol: "Sr",
+    atomicNumber: 38,
+    atomicWeight: 87.62,
+    category: "Alkaline Earth Metal",
+    details: "Strontium is a soft, silver-white metal that is highly reactive and is used in fireworks and magnets.",
+    uses: "Used in fireworks, magnets, and in certain types of glass.",
+  },
+  {
+    name: "Yttrium",
+    symbol: "Y",
+    atomicNumber: 39,
+    atomicWeight: 88.906,
+    category: "Transition Metal",
+    details: "Yttrium is a silvery metal that is used in various alloys and is essential in certain phosphors.",
+    uses: "Used in LEDs, phosphors, and superconductors.",
+  },
+  {
+    name: "Zirconium",
+    symbol: "Zr",
+    atomicNumber: 40,
+    atomicWeight: 91.224,
+    category: "Transition Metal",
+    details: "Zirconium is a strong, corrosion-resistant metal that is often used in nuclear reactors.",
+    uses: "Used in nuclear reactors, dental implants, and chemical processing.",
+  },
+  {
+    name: "Niobium",
+    symbol: "Nb",
+    atomicNumber: 41,
+    atomicWeight: 92.906,
+    category: "Transition Metal",
+    details: "Niobium is a soft, gray metal known for its superconducting properties.",
+    uses: "Used in superconductors, alloys, and jewelry.",
+  },
+  {
+    name: "Molybdenum",
+    symbol: "Mo",
+    atomicNumber: 42,
+    atomicWeight: 95.95,
+    category: "Transition Metal",
+    details: "Molybdenum is a silvery metal that is highly resistant to corrosion and has a high melting point.",
+    uses: "Used in steel production and as a catalyst.",
+  },
+  {
+    name: "Technetium",
+    symbol: "Tc",
+    atomicNumber: 43,
+    atomicWeight: 98,
+    category: "Transition Metal",
+    details: "Technetium is a silvery-gray metal that is the lightest element without a stable isotope.",
+    uses: "Used in medical imaging and as a radioactive tracer.",
+  },
+  {
+    name: "Ruthenium",
+    symbol: "Ru",
+    atomicNumber: 44,
+    atomicWeight: 101.07,
+    category: "Transition Metal",
+    details: "Ruthenium is a rare transition metal that is used in electrical contacts and as a catalyst.",
+    uses: "Used in electronics, solar cells, and chemical catalysts.",
+  },
+  {
+    name: "Rhodium",
+    symbol: "Rh",
+    atomicNumber: 45,
+    atomicWeight: 102.905,
+    category: "Transition Metal",
+    details: "Rhodium is a silvery-white metal that is highly reflective and resistant to corrosion.",
+    uses: "Used in catalytic converters, jewelry, and electrical contacts.",
+  },
+  {
+    name: "Palladium",
+    symbol: "Pd",
+    atomicNumber: 46,
+    atomicWeight: 106.42,
+    category: "Transition Metal",
+    details: "Palladium is a rare, silvery-white metal that is used in electronics and as a catalyst.",
+    uses: "Used in catalytic converters, jewelry, and electronics.",
+  },
+  {
+    name: "Silver",
+    symbol: "Ag",
+    atomicNumber: 47,
+    atomicWeight: 107.868,
+    category: "Transition Metal",
+    details: "Silver is a soft, white metal known for its high electrical conductivity and luster.",
+    uses: "Used in jewelry, photography, and electrical conductors.",
+  },
+  {
+    name: "Cadmium",
+    symbol: "Cd",
+    atomicNumber: 48,
+    atomicWeight: 112.414,
+    category: "Transition Metal",
+    details: "Cadmium is a soft, bluish-white metal that is toxic and used in batteries.",
+    uses: "Used in batteries, pigments, and coatings.",
+  },
+  {
+    name: "Indium",
+    symbol: "In",
+    atomicNumber: 49,
+    atomicWeight: 114.818,
+    category: "Post-transition Metal",
+    details: "Indium is a soft, malleable metal used in electronics and solders.",
+    uses: "Used in LCD screens, solders, and alloys.",
+  },
+  {
+    name: "Tin",
+    symbol: "Sn",
+    atomicNumber: 50,
+    atomicWeight: 118.710,
+    category: "Post-transition Metal",
+    details: "Tin is a silvery-white metal that is malleable and resistant to corrosion.",
+    uses: "Used in alloys, coatings, and solder.",
+  },
+  {
+    name: "Antimony",
+    symbol: "Sb",
+    atomicNumber: 51,
+    atomicWeight: 121.760,
+    category: "Metalloid",
+    details: "Antimony is a brittle metalloid with various allotropes used in flame retardants.",
+    uses: "Used in flame retardants, batteries, and alloys.",
+  },
+  {
+    name: "Tellurium",
+    symbol: "Te",
+    atomicNumber: 52,
+    atomicWeight: 127.60,
+    category: "Metalloid",
+    details: "Tellurium is a brittle, silvery-white metalloid used in metallurgy and electronics.",
+    uses: "Used in alloys, semiconductors, and solar panels.",
+  },
+  {
+    name: "Iodine",
+    symbol: "I",
+    atomicNumber: 53,
+    atomicWeight: 126.904,
+    category: "Halogen",
+    details: "Iodine is a dark gray or purple-black solid that is essential for life and is used as a disinfectant.",
+    uses: "Used in antiseptics, iodized salt, and photography.",
+  },
+  {
+    name: "Xenon",
+    symbol: "Xe",
+    atomicNumber: 54,
+    atomicWeight: 131.293,
+    category: "Noble Gas",
+    details: "Xenon is a colorless, dense gas that is used in high-intensity lamps.",
+    uses: "Used in flash lamps, medical imaging, and lighting.",
+  },
+  {
+    name: "Cesium",
+    symbol: "Cs",
+    atomicNumber: 55,
+    atomicWeight: 132.905,
+    category: "Alkali Metal",
+    details: "Cesium is a soft, gold-colored metal that is used in atomic clocks.",
+    uses: "Used in atomic clocks, oil drilling, and as a research tool.",
+  },
+  {
+    name: "Barium",
+    symbol: "Ba",
+    atomicNumber: 56,
+    atomicWeight: 137.327,
+    category: "Alkaline Earth Metal",
+    details: "Barium is a soft, silvery-white metal that is used in medical imaging and fireworks.",
+    uses: "Used in medical imaging, fireworks, and as a catalyst.",
+  },
+  {
+    name: "Lanthanum",
+    symbol: "La",
+    atomicNumber: 57,
+    atomicWeight: 138.905,
+    category: "Lanthanide",
+    details: "Lanthanum is a soft, malleable metal that is used in various alloys and as a catalyst.",
+    uses: "Used in catalysts, camera lenses, and glasses.",
+  },
+  {
+    name: "Cerium",
+    symbol: "Ce",
+    atomicNumber: 58,
+    atomicWeight: 140.116,
+    category: "Lanthanide",
+    details: "Cerium is a silvery-white metal that is used in catalysts and glass-making.",
+    uses: "Used in glass polishing and as a catalyst.",
+  },
+  {
+    name: "Praseodymium",
+    symbol: "Pr",
+    atomicNumber: 59,
+    atomicWeight: 140.907,
+    category: "Lanthanide",
+    details: "Praseodymium is a silvery metal that is used in certain alloys and as a glass colorant.",
+    uses: "Used in alloys, glass coloring, and magnets.",
+  },
+  {
+    name: "Neodymium",
+    symbol: "Nd",
+    atomicNumber: 60,
+    atomicWeight: 144.242,
+    category: "Lanthanide",
+    details: "Neodymium is a soft, silvery metal used in strong magnets.",
+    uses: "Used in magnets, lasers, and glass coloring.",
+  },
+  {
+    name: "Promethium",
+    symbol: "Pm",
+    atomicNumber: 61,
+    atomicWeight: 145,
+    category: "Lanthanide",
+    details: "Promethium is a rare, radioactive metal that is used in atomic batteries.",
+    uses: "Used in atomic batteries and glow-in-the-dark paints.",
+  },
+  {
+    name: "Samarium",
+    symbol: "Sm",
+    atomicNumber: 62,
+    atomicWeight: 150.36,
+    category: "Lanthanide",
+    details: "Samarium is a silvery metal that is used in magnets and nuclear reactors.",
+    uses: "Used in magnets, nuclear reactors, and lasers.",
+  },
+  {
+    name: "Europium",
+    symbol: "Eu",
+    atomicNumber: 63,
+    atomicWeight: 151.964,
+    category: "Lanthanide",
+    details: "Europium is a silvery metal used in phosphorescent materials.",
+    uses: "Used in fluorescent lamps and TV screens.",
+  },
+  {
+    name: "Gadolinium",
+    symbol: "Gd",
+    atomicNumber: 64,
+    atomicWeight: 157.25,
+    category: "Lanthanide",
+    details: "Gadolinium is a silvery-white metal used in MRI contrast agents.",
+    uses: "Used in MRI contrast agents and nuclear reactors.",
+  },
+  {
+    name: "Terbium",
+    symbol: "Tb",
+    atomicNumber: 65,
+    atomicWeight: 158.925,
+    category: "Lanthanide",
+    details: "Terbium is a silvery metal used in green phosphors.",
+    uses: "Used in phosphors and magnets.",
+  },
+  {
+    name: "Dysprosium",
+    symbol: "Dy",
+    atomicNumber: 66,
+    atomicWeight: 162.500,
+    category: "Lanthanide",
+    details: "Dysprosium is a silvery metal that is used in magnets and nuclear reactors.",
+    uses: "Used in magnets and nuclear reactors.",
+  },
+  {
+    name: "Holmium",
+    symbol: "Ho",
+    atomicNumber: 67,
+    atomicWeight: 164.930,
+    category: "Lanthanide",
+    details: "Holmium is a silvery metal that is used in nuclear reactors and lasers.",
+    uses: "Used in nuclear reactors and lasers.",
+  },
+  {
+    name: "Erbium",
+    symbol: "Er",
+    atomicNumber: 68,
+    atomicWeight: 167.259,
+    category: "Lanthanide",
+    details: "Erbium is a silvery metal used in lasers and as a dopant.",
+    uses: "Used in lasers and optical fibers.",
+  },
+  {
+    name: "Thulium",
+    symbol: "Tm",
+    atomicNumber: 69,
+    atomicWeight: 168.934,
+    category: "Lanthanide",
+    details: "Thulium is a silvery-gray metal that is used in medical and nuclear applications.",
+    uses: "Used in lasers and medical imaging.",
+  },
+  {
+    name: "Ytterbium",
+    symbol: "Yb",
+    atomicNumber: 70,
+    atomicWeight: 173.04,
+    category: "Lanthanide",
+    details: "Ytterbium is a soft, silvery metal used in certain types of lasers.",
+    uses: "Used in lasers and as a dopant in fiber optics.",
+  },
+  {
+    name: "Lutetium",
+    symbol: "Lu",
+    atomicNumber: 71,
+    atomicWeight: 174.966,
+    category: "Lanthanide",
+    details: "Lutetium is a silvery-white metal used in catalysts and in certain types of lasers.",
+    uses: "Used in catalysts and as a dopant in lasers.",
+  },
+  {
+    name: "Hafnium",
+    symbol: "Hf",
+    atomicNumber: 72,
+    atomicWeight: 178.49,
+    category: "Transition Metal",
+    details: "Hafnium is a shiny, silvery metal known for its high resistance to corrosion.",
+    uses: "Used in nuclear reactors and as a metal alloy.",
+  },
+  {
+    name: "Tantalum",
+    symbol: "Ta",
+    atomicNumber: 73,
+    atomicWeight: 180.947,
+    category: "Transition Metal",
+    details: "Tantalum is a hard, blue-gray metal used in electronics and as a corrosion-resistant material.",
+    uses: "Used in capacitors and surgical instruments.",
+  },
+  {
+    name: "Tungsten",
+    symbol: "W",
+    atomicNumber: 74,
+    atomicWeight: 183.84,
+    category: "Transition Metal",
+    details: "Tungsten is a dense, hard metal with the highest melting point of any element.",
+    uses: "Used in light bulb filaments, cutting tools, and military applications.",
+  },
+  {
+    name: "Rhenium",
+    symbol: "Re",
+    atomicNumber: 75,
+    atomicWeight: 186.207,
+    category: "Transition Metal",
+    details: "Rhenium is a rare metal used in high-temperature superalloys.",
+    uses: "Used in jet engines and filaments.",
+  },
+  {
+    name: "Osmium",
+    symbol: "Os",
+    atomicNumber: 76,
+    atomicWeight: 190.23,
+    category: "Transition Metal",
+    details: "Osmium is a hard, blue-gray metal that is one of the densest elements.",
+    uses: "Used in fountain pen nibs and electrical contacts.",
+  },
+  {
+    name: "Iridium",
+    symbol: "Ir",
+    atomicNumber: 77,
+    atomicWeight: 192.217,
+    category: "Transition Metal",
+    details: "Iridium is a very dense, silvery-white metal that is resistant to corrosion.",
+    uses: "Used in spark plugs and as a hardening agent.",
+  },
+  {
+    name: "Platinum",
+    symbol: "Pt",
+    atomicNumber: 78,
+    atomicWeight: 195.084,
+    category: "Transition Metal",
+    details: "Platinum is a dense, malleable metal used in jewelry and catalytic converters.",
+    uses: "Used in jewelry, electronics, and catalysts.",
+  },
+  {
+    name: "Gold",
+    symbol: "Au",
+    atomicNumber: 79,
+    atomicWeight: 196.966,
+    category: "Transition Metal",
+    details: "Gold is a yellow, malleable metal that is valued for its beauty and rarity.",
+    uses: "Used in jewelry, electronics, and currency.",
+  },
+  {
+    name: "Mercury",
+    symbol: "Hg",
+    atomicNumber: 80,
+    atomicWeight: 200.592,
+    category: "Transition Metal",
+    details: "Mercury is a heavy, silvery metal that is liquid at room temperature.",
+    uses: "Used in thermometers, barometers, and electrical switches.",
+  },
+  {
+    name: "Thallium",
+    symbol: "Tl",
+    atomicNumber: 81,
+    atomicWeight: 204.38,
+    category: "Post-transition Metal",
+    details: "Thallium is a soft metal that is highly toxic and used in electronics.",
+    uses: "Used in electronics and as a pesticide.",
+  },
+  {
+    name: "Lead",
+    symbol: "Pb",
+    atomicNumber: 82,
+    atomicWeight: 207.2,
+    category: "Post-transition Metal",
+    details: "Lead is a dense, malleable metal that is toxic and used in batteries.",
+    uses: "Used in batteries, radiation shielding, and ammunition.",
+  },
+  {
+    name: "Bismuth",
+    symbol: "Bi",
+    atomicNumber: 83,
+    atomicWeight: 208.980,
+    category: "Post-transition Metal",
+    details: "Bismuth is a brittle metal with low toxicity, used in cosmetics and pharmaceuticals.",
+    uses: "Used in cosmetics, pharmaceuticals, and as a lead substitute.",
+  },
+  {
+    name: "Polonium",
+    symbol: "Po",
+    atomicNumber: 84,
+    atomicWeight: 209,
+    category: "Post-transition Metal",
+    details: "Polonium is a radioactive element that is extremely toxic.",
+    uses: "Used in atomic batteries and as a neutron source.",
+  },
+  {
+    name: "Astatine",
+    symbol: "At",
+    atomicNumber: 85,
+    atomicWeight: 210,
+    category: "Halogen",
+    details: "Astatine is a rare, radioactive element that is poorly understood.",
+    uses: "Used in some types of research.",
+  },
+  {
+    name: "Radon",
+    symbol: "Rn",
+    atomicNumber: 86,
+    atomicWeight: 222,
+    category: "Noble Gas",
+    details: "Radon is a colorless, odorless gas that is radioactive.",
+    uses: "Used in cancer treatment and in some types of research.",
+  },
+  {
+    name: "Francium",
+    symbol: "Fr",
+    atomicNumber: 87,
+    atomicWeight: 223,
+    category: "Alkali Metal",
+    details: "Francium is a highly radioactive metal that is extremely rare.",
+    uses: "Used in research but has no significant applications.",
+  },
+  {
+    name: "Radium",
+    symbol: "Ra",
+    atomicNumber: 88,
+    atomicWeight: 226,
+    category: "Alkaline Earth Metal",
+    details: "Radium is a highly radioactive metal that glows in the dark.",
+    uses: "Used in medical applications and radiation therapy.",
+  },
+  {
+    name: "Actinium",
+    symbol: "Ac",
+    atomicNumber: 89,
+    atomicWeight: 227,
+    category: "Actinide",
+    details: "Actinium is a soft, silvery-white metal that is radioactive.",
+    uses: "Used in radiation therapy and as a neutron source.",
+  },
+  {
+    name: "Thorium",
+    symbol: "Th",
+    atomicNumber: 90,
+    atomicWeight: 232.038,
+    category: "Actinide",
+    details: "Thorium is a radioactive metal used as a nuclear fuel.",
+    uses: "Used in nuclear reactors and as a catalyst.",
+  },
+  {
+    name: "Protactinium",
+    symbol: "Pa",
+    atomicNumber: 91,
+    atomicWeight: 231.035886,
+    category: "Actinide",
+    details: "Protactinium is a rare, radioactive element used in research.",
+    uses: "Used in research and in some nuclear applications.",
+  },
+  {
+    name: "Uranium",
+    symbol: "U",
+    atomicNumber: 92,
+    atomicWeight: 238.028,
+    category: "Actinide",
+    details: "Uranium is a dense, radioactive metal used in nuclear fuel.",
+    uses: "Used in nuclear reactors and for weapons.",
+  },
+  {
+    name: "Neptunium",
+    symbol: "Np",
+    atomicNumber: 93,
+    atomicWeight: 237,
+    category: "Actinide",
+    details: "Neptunium is a radioactive element used in research.",
+    uses: "Used in research and in some nuclear applications.",
+  },
+  {
+    name: "Plutonium",
+    symbol: "Pu",
+    atomicNumber: 94,
+    atomicWeight: 244,
+    category: "Actinide",
+    details: "Plutonium is a radioactive metal used in nuclear weapons.",
+    uses: "Used in nuclear weapons and reactors.",
+  },
+  {
+    name: "Americium",
+    symbol: "Am",
+    atomicNumber: 95,
+    atomicWeight: 243,
+    category: "Actinide",
+    details: "Americium is a radioactive element used in smoke detectors.",
+    uses: "Used in smoke detectors and research.",
+  },
+  {
+    name: "Curium",
+    symbol: "Cm",
+    atomicNumber: 96,
+    atomicWeight: 247,
+    category: "Actinide",
+    details: "Curium is a radioactive metal used in research and nuclear applications.",
+    uses: "Used in research and in some nuclear applications.",
+  },
+  {
+    name: "Berkelium",
+    symbol: "Bk",
+    atomicNumber: 97,
+    atomicWeight: 247,
+    category: "Actinide",
+    details: "Berkelium is a synthetic element used in research.",
+    uses: "Used in research and in some nuclear applications.",
+  },
+  {
+    name: "Californium",
+    symbol: "Cf",
+    atomicNumber: 98,
+    atomicWeight: 251,
+    category: "Actinide",
+    details: "Californium is a radioactive element used in neutron sources.",
+    uses: "Used in neutron sources and research.",
+  },
+  {
+    name: "Einsteinium",
+    symbol: "Es",
+    atomicNumber: 99,
+    atomicWeight: 252,
+    category: "Actinide",
+    details: "Einsteinium is a synthetic element used in research.",
+    uses: "Used in research and in some nuclear applications.",
+  },
+  {
+    name: "Fermium",
+    symbol: "Fm",
+    atomicNumber: 100,
+    atomicWeight: 257,
+    category: "Actinide",
+    details: "Fermium is a synthetic element used in research.",
+    uses: "Used in research and in some nuclear applications.",
+  },
+  {
+    name: "Mendelevium",
+    symbol: "Md",
+    atomicNumber: 101,
+    atomicWeight: 258,
+    category: "Actinide",
+    details: "Mendelevium is a synthetic element used in research.",
+    uses: "Used in research and in some nuclear applications.",
+  },
+  {
+    name: "Nobelium",
+    symbol: "No",
+    atomicNumber: 102,
+    atomicWeight: 259,
+    category: "Actinide",
+    details: "Nobelium is a synthetic element used in research.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Lawrencium",
+    symbol: "Lr",
+    atomicNumber: 103,
+    atomicWeight: 262,
+    category: "Actinide",
+    details: "Lawrencium is a synthetic element used in research.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Rutherfordium",
+    symbol: "Rf",
+    atomicNumber: 104,
+    atomicWeight: 267,
+    category: "Transition Metal",
+    details: "Rutherfordium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Dubnium",
+    symbol: "Db",
+    atomicNumber: 105,
+    atomicWeight: 268,
+    category: "Transition Metal",
+    details: "Dubnium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Seaborgium",
+    symbol: "Sg",
+    atomicNumber: 106,
+    atomicWeight: 271,
+    category: "Transition Metal",
+    details: "Seaborgium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Bohrium",
+    symbol: "Bh",
+    atomicNumber: 107,
+    atomicWeight: 270,
+    category: "Transition Metal",
+    details: "Bohrium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Hassium",
+    symbol: "Hs",
+    atomicNumber: 108,
+    atomicWeight: 277,
+    category: "Transition Metal",
+    details: "Hassium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Meitnerium",
+    symbol: "Mt",
+    atomicNumber: 109,
+    atomicWeight: 276,
+    category: "Transition Metal",
+    details: "Meitnerium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Darmstadtium",
+    symbol: "Ds",
+    atomicNumber: 110,
+    atomicWeight: 281,
+    category: "Transition Metal",
+    details: "Darmstadtium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Roentgenium",
+    symbol: "Rg",
+    atomicNumber: 111,
+    atomicWeight: 282,
+    category: "Transition Metal",
+    details: "Roentgenium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Copernicium",
+    symbol: "Cn",
+    atomicNumber: 112,
+    atomicWeight: 285,
+    category: "Transition Metal",
+    details: "Copernicium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Nihonium",
+    symbol: "Nh",
+    atomicNumber: 113,
+    atomicWeight: 286,
+    category: "Post-transition Metal",
+    details: "Nihonium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Flerovium",
+    symbol: "Fl",
+    atomicNumber: 114,
+    atomicWeight: 289,
+    category: "Post-transition Metal",
+    details: "Flerovium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Moscovium",
+    symbol: "Mc",
+    atomicNumber: 115,
+    atomicWeight: 288,
+    category: "Post-transition Metal",
+    details: "Moscovium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Livermorium",
+    symbol: "Lv",
+    atomicNumber: 116,
+    atomicWeight: 293,
+    category: "Post-transition Metal",
+    details: "Livermorium is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Tennessine",
+    symbol: "Ts",
+    atomicNumber: 117,
+    atomicWeight: 294,
+    category: "Halogen",
+    details: "Tennessine is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+  {
+    name: "Oganesson",
+    symbol: "Og",
+    atomicNumber: 118,
+    atomicWeight: 294,
+    category: "Noble Gas",
+    details: "Oganesson is a synthetic element with no significant applications.",
+    uses: "Used in research.",
+  },
+];
+
+
+
+// Search button event listener
+  document.getElementById("search-btn").addEventListener("click", function() {
+    const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+    const result = elements.find(element => 
+      element.name.toLowerCase() === searchTerm || 
+      element.symbol.toLowerCase() === searchTerm || 
+      element.atomicNumber == searchTerm
+    );
+
+    const resultContainer = document.getElementById("search-result");
+    resultContainer.innerHTML = ""; // Clear previous results
+
+    if (result) {
+      // Create the element box with symbol and atomic number
+      const elementBox = `<div class="element-box" onclick="showDetails(${result.atomicNumber})">
+                            ${result.atomicNumber}<br>
+                            ${result.symbol}
+                          </div>`;
+      
+      // Inject the element box into the result container
+      resultContainer.innerHTML = elementBox;
+      resultContainer.style.display = "flex"; // Make the result visible
+    } else {
+      // Show message if no element is found
+      resultContainer.innerHTML = "<p>No matching element found.</p>";
+      resultContainer.style.display = "flex";
+    }
+  });
+
+  // Function to show details for a specific element
+  function showDetails(atomicNumber) {
+    const resultContainer = document.getElementById("search-result");
+    const element = elements.find(e => e.atomicNumber === atomicNumber);
+
+    if (element) {
+      // Create the element details with additional information
+      const elementDetails = `<div class="element-details">
+                                <strong>Name:</strong> ${element.name}<br>
+                                <strong>Symbol:</strong> ${element.symbol}<br>
+                                <strong>Atomic Number:</strong> ${element.atomicNumber}<br>
+                                <strong>Atomic Weight:</strong> ${element.atomicWeight}<br>
+                                <strong>Category:</strong> ${element.category}<br>
+                                <strong>Details:</strong> ${element.details}<br>
+                                <strong>Uses:</strong> ${element.uses}
+                              </div>`;
+
+      // Inject the element details into the result container
+      resultContainer.innerHTML = ""; // Clear the box first
+      resultContainer.innerHTML += elementDetails; // Add details
+    }
+  }
+
+  // Search input event listener for dynamic filtering
+  document.getElementById("search-bar").addEventListener("input", (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const results = elements.filter(element => 
+      element.name.toLowerCase().includes(searchTerm) || 
+      element.symbol.toLowerCase().includes(searchTerm) || 
+      element.atomicNumber.toString().includes(searchTerm)
+    );
+
+    const resultContainer = document.getElementById("search-result");
+    resultContainer.innerHTML = ""; // Clear previous results
+
+    if (results.length > 0) {
+      results.forEach(result => {
+        // Create the element box with symbol and atomic number
+        const elementBox = `<div class="element-box" onclick="showDetails(${result.atomicNumber})">
+                              ${result.atomicNumber}<br>
+                              ${result.symbol}
+                            </div>`;
+        
+        // Inject the element box into the result container
+        resultContainer.innerHTML += elementBox; // Append new boxes
+      });
+      resultContainer.style.display = "flex"; // Make the result visible
+    } else {
+      // Show message if no elements are found
+      resultContainer.innerHTML = "<p>No matching elements found.</p>";
+      resultContainer.style.display = "flex";
+    }
+  });
+</script>
+
+
+<!----- footer ----->
+
+<section class="footer">
+    <h4>About Us</h4>
+    <p>At Periodic Insight, we aim to make chemistry accessible and fun 
+    <br>by exploring the fascinating world of elements and their properties.</p>
+    <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+    </div>
+</section>
+
+<!------- JavaScript for Toggle Menu -------> 
+<script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu(){
+        navLinks.style.right = "0";
+    }
+    function hideMenu(){
+        navLinks.style.right = "-200px";
+    }
+</script>
+
+</body>
+</html>
+
+

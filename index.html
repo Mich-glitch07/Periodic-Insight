@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Table</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<section class="header">
+    <nav>
+        <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="Explore-Elements.html">EXPLORE ELEMENTS</a></li>
+                <li><a href="Search.html">SEARCH</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+        <h1>Interactive Periodic Table</h1>
+        <p>Welcome to our Interactive Periodic Table! Discover detailed information about every chemical element, 
+            from atomic numbers to unique properties.</p>
+        <a href="" class="hero-btn">Start exploring the elements now!</a>
+    </div>
+</section>
+
+
+<!-----explore and info----->
+
+<section class="explore">
+    <h1>Explore Chemistry in New Ways</h1>
+    <p>Learn about the different elements and discover their interesting traits, fun facts, and how they fit into our world.</p>
+    
+    <div class="row">
+        <div class="explore-col">
+            <h3>Element Categories</h3>
+            <p>Explore the categories of elements. Metals are strong and conductive. Non-metals are vital for life. Metalloids have mixed properties.</p>
+        </div>
+        <div class="explore-col">
+            <h3>Element Properties</h3>
+            <p>Learn about unique element properties. Atomic mass affects stability. Electronegativity shows how elements attract electrons. Reactivity indicates how elements interact.</p>
+        </div>
+        <div class="explore-col">
+            <h3>Fun Chemistry Facts</h3>
+            <p>Discover interesting facts about elements. Helium makes balloons float. Gold is extremely malleable. Mercury is a liquid metal at room temperature.</p>
+        </div>
+    </div>
+</section>
+
+<section class="info">
+    <h1>Information You Need to Know</h1>
+    <div class="info-row"> <!-- Changed class from row to info-row -->
+        <div class="info-col">
+            <h3>Periodic Table of the Elements</h3>
+            <p>The periodic table of elements puts all the known elements into groups with similar properties. This makes 
+                it an important tool for chemists, nanotechnologists and other scientists. If you get to understand the 
+                periodic table, and learn to use it, you will be able to predict how chemicals will behave.</p>
+        </div>
+        <div class="info-col">
+            <h3>Atoms</h3>
+            <p>Atoms are the building blocks of matter. An atom has three basic parts protons, neutrons and electrons. 
+                There are smaller particles, but they do not concern us here. Protons and neutrons form the nucleus at the 
+                centre of an atom (hydrogen is a bit different, it only has a proton). Electrons move around within a large 
+                area of space outside the nucleus. The electrons are organised in energy levels how an element behaves 
+                depends on how easy it is to gain or lose electrons in the outermost energy levels.</p>
+        </div>
+        <div class="info-col">
+            <h3>Atomic Number</h3>
+            <p>The atomic number of an element is the number of protons an atom has the number of protons determines what 
+                an element is. For example, if an atom has six protons, it can only be carbon. The atomic number can also tell 
+                us how many electrons an atom has. From this, we can work out how the electrons are arranged, and this will tell 
+                us how an element will react with others.</p>
+        </div>
+        <div class="info-col">
+            <h3>Elements</h3>
+            <p>An element is a substance that consists of atoms with the same atomic number. Elements cannot be split into simpler 
+                substances using normal chemical methods. The element iron is made only of iron atoms, and iron atoms are the same 
+                everywhere iron atoms on Earth are the same as iron atoms on Mars.</p>
+        </div>
+    </div>
+</section>
+
+
+<!----- footer ----->
+
+<section class="footer">
+    <h4>About Us</h4>
+    <p>At Periodic Insight, we aim to make chemistry accessible and fun 
+    <br>by exploring the fascinating world of elements and their properties.</p>
+    <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+    </div>
+</section>
+
+<!------- JavaScript for Toggle Menu -------> 
+<script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu(){
+        navLinks.style.right = "0";
+    }
+    function hideMenu(){
+        navLinks.style.right = "-200px";
+    }
+</script>
+
+</body>
+</html>
+
+
