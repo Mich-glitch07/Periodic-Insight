@@ -4,33 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Periodic Table</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Link to the main stylesheet -->
+    <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- Preconnect for Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Font Awesome for icons -->
 </head>
 <body>
-<section class="sub-header">
+<section class="sub-header"> <!-- Sub-header section with navigation -->
     <nav>
-        <a href="index.html"><img src="logo.png" alt="Logo"></a>
-        <div class="nav-links" id="navLinks">
-            <i class="fa fa-times" onclick="hideMenu()"></i>
+        <a href="index.html"><img src="images/logo.png" alt="Logo"></a> <!-- Logo link -->
+        <div class="nav-links" id="navLinks"> <!-- Navigation links -->
+            <i class="fa fa-times" onclick="hideMenu()"></i> <!-- Icon to close menu -->
             <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="Explore-Elements.html">EXPLORE ELEMENTS</a></li>
-                <li><a href="Search.html">SEARCH</a></li>
+                <li><a href="index.html">HOME</a></li> <!-- Home link -->
+                <li><a href="Explore-Elements.html">EXPLORE ELEMENTS</a></li> <!-- Link to explore elements page -->
+                <li><a href="Search.html">SEARCH</a></li> <!-- Link to search page -->
             </ul>
         </div>
         <i class="fa fa-bars" onclick="showMenu()"></i>
     </nav>
-    <h1>Know more about Elements</h1>
+    <h1>Know more about Elements</h1> <!-- Icon to open menu -->
 </section>
 
 <!-----search----->
 <div class="search-container">
+    <!-- Input field for users to type the name of the element they want to search for -->
     <input type="text" id="search-bar" placeholder="Search for an element..." />
+
+    <!-- Button to initiate the search action -->
     <button id="search-btn">Search</button>
   </div>
+
+  <!-- Container to display the search results -->
   <div id="search-result" class="result-container"></div>
   
   
@@ -1106,13 +1111,17 @@
 
 // Search button event listener
   document.getElementById("search-btn").addEventListener("click", function() {
+    // Get the search term from the input field and convert it to lowercase for case-insensitive matching
     const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+
+    // Find the element that matches the search term by name, symbol, or atomic number
     const result = elements.find(element => 
       element.name.toLowerCase() === searchTerm || 
       element.symbol.toLowerCase() === searchTerm || 
       element.atomicNumber == searchTerm
     );
 
+    // Get the result container where search results will be displayed
     const resultContainer = document.getElementById("search-result");
     resultContainer.innerHTML = ""; // Clear previous results
 
@@ -1189,29 +1198,29 @@
 </script>
 
 
-<!----- footer ----->
+<!----- Footer Section ----->
 
-<section class="footer">
-    <h4>About Us</h4>
-    <p>At Periodic Insight, we aim to make chemistry accessible and fun 
-    <br>by exploring the fascinating world of elements and their properties.</p>
-    <div class="icons">
-        <i class="fa fa-facebook"></i>
-        <i class="fa fa-twitter"></i>
-        <i class="fa fa-instagram"></i>
-        <i class="fa fa-linkedin"></i>
-    </div>
+<section class="footer"> <!-- Footer containing about us information -->
+  <h4>About Us</h4>
+  <p>At Periodic Insight, we aim to make chemistry accessible and fun 
+  <br>by exploring the fascinating world of elements and their properties.</p>
+  <div class="icons"> <!-- Social media icons -->
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-linkedin"></i>
+  </div>
 </section>
 
 <!------- JavaScript for Toggle Menu -------> 
 <script>
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-200px";
-    }
+  var navLinks = document.getElementById("navLinks"); // Get navigation links element by ID
+  function showMenu(){
+      navLinks.style.right = "0"; // Show menu by sliding it in
+  }
+  function hideMenu(){
+      navLinks.style.right = "-200px"; // Hide menu by sliding it out
+  }
 </script>
 
 </body>
