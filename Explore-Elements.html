@@ -4,63 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Periodic Table</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Link to the main stylesheet -->
+    <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- Preconnect for Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Font Awesome for icons -->
 </head>
 <body>
-<section class="sub-header">
+<section class="sub-header"> <!-- Sub-header section with navigation -->
     <nav>
-        <a href="index.html"><img src="logo.png" alt="Logo"></a>
-        <div class="nav-links" id="navLinks">
-            <i class="fa fa-times" onclick="hideMenu()"></i>
+        <a href="index.html"><img src="images/logo.png" alt="Logo"></a> <!-- Logo link -->
+        <div class="nav-links" id="navLinks"> <!-- Navigation links -->
+            <i class="fa fa-times" onclick="hideMenu()"></i> <!-- Icon to close the menu -->
             <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="Explore-Elements.html">EXPLORE ELEMENTS</a></li>
-                <li><a href="Search.html">SEARCH</a></li>
+                <li><a href="index.html">HOME</a></li> <!-- Home link -->
+                <li><a href="Explore-Elements.html">EXPLORE ELEMENTS</a></li> <!-- Link to explore elements -->
+                <li><a href="Search.html">SEARCH</a></li> <!-- Link to search page -->
             </ul>
         </div>
-        <i class="fa fa-bars" onclick="showMenu()"></i>
+        <i class="fa fa-bars" onclick="showMenu()"></i> <!-- Icon to open the menu -->
     </nav>
-    <h1>Periodic Table of Elements</h1>
+    <h1>Periodic Table of Elements</h1> <!-- Title of the page -->
 </section>
 
-<!-------categories------>
+<!-------Categories section------>
 
-<div class="legend">
-    <button class="all" onclick="filterCategory('all')">All</button>
-    <button class="alkali-metals" onclick="filterCategory('alkali-metals')">Alkali Metals</button>
-    <button class="alkaline-earth-metals" onclick="filterCategory('alkaline-earth-metals')">Alkaline Earth Metals</button>
-    <button class="lanthanoids" onclick="filterCategory('lanthanoids')">Lanthanoids</button>
-    <button class="aklinoids" onclick="filterCategory('aklinoids')">Aklinoids</button>
-    <button class="transition-metals" onclick="filterCategory('transition-metals')">Transition Metals</button>
-    <button class="post-transition-metals" onclick="filterCategory('post-transition-metals')">Post Transition Metals</button>
-    <button class="metalloids" onclick="filterCategory('metalloids')">Metalloids</button>
-    <button class="other-nonmentals" onclick="filterCategory('other-nonmentals')">Other Nonmetals</button>
-    <button class="noble-gases" onclick="filterCategory('noble-gases')">Noble Gases</button>
-    <button class="unknown" onclick="filterCategory('unknown')">Unknown</button>
+<div class="legend"> <!-- Section for filtering categories -->
+    <button class="all" onclick="filterCategory('all')">All</button> <!-- Button to show all elements -->
+    <button class="alkali-metals" onclick="filterCategory('alkali-metals')">Alkali Metals</button> <!-- Button to filter alkali metals -->
+    <button class="alkaline-earth-metals" onclick="filterCategory('alkaline-earth-metals')">Alkaline Earth Metals</button> <!-- Button to filter alkaline earth metals -->
+    <button class="lanthanoids" onclick="filterCategory('lanthanoids')">Lanthanoids</button> <!-- Button to filter lanthanoids -->
+    <button class="aklinoids" onclick="filterCategory('aklinoids')">Aklinoids</button> <!-- Button to filter aklinoids -->
+    <button class="transition-metals" onclick="filterCategory('transition-metals')">Transition Metals</button> <!-- Button to filter transition-metals -->
+    <button class="post-transition-metals" onclick="filterCategory('post-transition-metals')">Post Transition Metals</button> <!-- Button to filter post-transition-metals -->
+    <button class="metalloids" onclick="filterCategory('metalloids')">Metalloids</button> <!-- Button to filter metalloids -->
+    <button class="other-nonmentals" onclick="filterCategory('other-nonmentals')">Other Nonmetals</button> <!-- Button to filter other-nonmentals -->
+    <button class="noble-gases" onclick="filterCategory('noble-gases')">Noble Gases</button> <!-- Button to filter noble-gases -->
+    <button class="unknown" onclick="filterCategory('unknown')">Unknown</button> <!-- Button to filter unknown -->
 </div>
 
 <!-------elements------>
 
+<!-- Section for displaying elements in the periodic table -->
 <section class="elements">
-    <div class="p-Table">
+    <div class="p-Table"> <!-- Container for the periodic table layout -->
+
+        <!-- Individual element block for Hydrogen -->
         <div class="element other-nonmentals" style="grid-column: 1; grid-row: 1;">
-            <div class="details">
-                <div class="number">1</div>
-                <div class="symbol">H</div>
-                <div class="name">Hydrogen</div>
-                <div class="weight">1.008</div>
+            <div class="details"> <!-- Container for element details -->
+                <div class="number">1</div> <!-- Atomic number of Hydrogen -->
+                <div class="symbol">H</div> <!-- Chemical symbol for Hydrogen -->
+                <div class="name">Hydrogen</div> <!-- Full name of the element -->
+                <div class="weight">1.008</div> <!-- Atomic weight of Hydrogen -->
             </div>
         </div>
 
+        <!-- Individual element block for Helium -->
         <div class="element noble-gases" style="grid-column: 18; grid-row: 1;">
-            <div class="details">
-                <div class="number">2</div>
-                <div class="symbol">He</div>
-                <div class="name">Helium</div>
-                <div class="weight">4.0026</div>
+            <div class="details"> <!-- Container for element details -->
+                <div class="number">2</div> <!-- Atomic number of Helium -->
+                <div class="symbol">He</div> <!-- Chemical symbol for Helium -->
+                <div class="name">Helium</div> <!-- Full name of the element -->
+                <div class="weight">4.0026</div> <!-- Atomic weight of Helium -->
             </div>
         </div>
 
@@ -1114,22 +1118,23 @@
 
 <!-----JavaScript for Categories----->
 <script>
+    // Function to filter displayed elements based on the selected category
     function filterCategory(category) {
-        // Get all element divs
+        // Get all element divs that belong to the periodic table
         const elements = document.querySelectorAll('.element');
         
-        // Loop through each element
+        // Loop through each element in the NodeList
         elements.forEach(element => {
-            // If the category is 'all', reset all to colorful
+            // If the selected category is 'all', reset all elements to visible
             if (category === 'all') {
-                element.style.backgroundColor = '';
-                element.style.opacity = '1';
+                element.style.backgroundColor = ''; // Reset background color
+                element.style.opacity = '1'; // Set opacity to fully visible
             } else {
-                // Check if the element contains the selected category
+                // Check if the element has the class of the selected category
                 if (element.classList.contains(category)) {
-                    element.style.opacity = '1'; // Show elements of the selected category
+                    element.style.opacity = '1'; // Show elements that match the selected category
                 } else {
-                    element.style.opacity = '0.2'; // Dim out the rest
+                    element.style.opacity = '0.2'; // Dim elements that do not match the category
                 }
             }
         });
@@ -1137,13 +1142,13 @@
 </script>
     
 
-<!----- footer ----->
+<!----- Footer Section ----->
 
-<section class="footer">
+<section class="footer"> <!-- Footer containing about us information -->
     <h4>About Us</h4>
     <p>At Periodic Insight, we aim to make chemistry accessible and fun 
     <br>by exploring the fascinating world of elements and their properties.</p>
-    <div class="icons">
+    <div class="icons"> <!-- Social media icons -->
         <i class="fa fa-facebook"></i>
         <i class="fa fa-twitter"></i>
         <i class="fa fa-instagram"></i>
@@ -1153,12 +1158,12 @@
 
 <!------- JavaScript for Toggle Menu -------> 
 <script>
-    var navLinks = document.getElementById("navLinks");
+    var navLinks = document.getElementById("navLinks"); // Get navigation links element by ID
     function showMenu(){
-        navLinks.style.right = "0";
+        navLinks.style.right = "0"; // Show menu by sliding it in
     }
     function hideMenu(){
-        navLinks.style.right = "-200px";
+        navLinks.style.right = "-200px"; // Hide menu by sliding it out
     }
 </script>
 
